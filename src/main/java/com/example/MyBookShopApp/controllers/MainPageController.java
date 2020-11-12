@@ -24,5 +24,4 @@ public class MainPageController {
         return "index";
     }
 
-    
 }
