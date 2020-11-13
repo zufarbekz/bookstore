@@ -30,7 +30,8 @@ public class MainPageController {
     }
 
     @GetMapping("/authors")
-    public String getAuthorsPage(){
+    public String getAuthorsPage(Model model){
+        model.addAttribute("authorsData", bookService.getAuthors());
         return "authors/authors";
     }
 

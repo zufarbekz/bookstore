@@ -9,7 +9,11 @@
 <!--[if IE 9]>
 <html class="ie9" lang="ru">
 <![endif]-->
-<!--[if gt IE 9]><!--> <html lang="ru"> <!--<![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
 <head>
   <title>Авторы</title>
   <meta name="description" content="Описание страницы">
@@ -95,6 +99,13 @@
     <div class="wrap">
       <main class="Middle-main">
         <h1 class="Middle-title">Авторы</h1>
+
+        <br>
+
+        <div class="Authors-item" th:each="author : ${authorsData}">
+          <a href="/authors/slug.html" th:text="${author}">Абгарян Наринэ</a>
+        </div>
+
         <!--
         <div class="Section">
           <div class="Authors">
@@ -3229,6 +3240,7 @@
           </div>
         </div>
         -->
+
       </main>
     </div>
   </div>

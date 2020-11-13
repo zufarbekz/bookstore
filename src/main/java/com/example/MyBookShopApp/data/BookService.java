@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BookService {
@@ -30,4 +31,14 @@ public class BookService {
         });
         return new ArrayList<>(books);
     }
+
+    public List<String> getAuthors() {
+        List<String> authors = new ArrayList<>();
+        for (Book book : getBooks()) {
+            authors.add(book.getAuthor());
+        }
+        authors = authors.stream().sorted().collect(Collectors.toList());
+        return authors;
+    }
+
 }
