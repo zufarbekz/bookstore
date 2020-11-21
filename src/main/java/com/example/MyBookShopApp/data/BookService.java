@@ -20,7 +20,8 @@ public class BookService {
     }
 
     public List<Book> getBooks() {
-        List<Book> books = jdbc.query("SELECT * FROM books", (ResultSet rs, int rowNum) ->{
+        List<Book> books = jdbc.query("SELECT * FROM books, authors WHERE books.id = authors.id",
+                                          (ResultSet rs, int rowNum) ->{
             Book book = new Book();
             book.setId(rs.getInt("id"));
             book.setAuthor(rs.getString("author"));
@@ -33,12 +34,9 @@ public class BookService {
     }
 
     public List<String> getAuthors() {
-        List<String> authors = new ArrayList<>();
-        for (Book book : getBooks()) {
-            authors.add(book.getAuthor());
-        }
+        List<String> authors = jdbc.query("SELECT * FROM authors", (ResultSet rs, int rowNum) -> (rs.getString("author")));
         authors = authors.stream().sorted().collect(Collectors.toList());
-        return authors;
+        return new ArrayList<>(authors);
     }
 
 }
