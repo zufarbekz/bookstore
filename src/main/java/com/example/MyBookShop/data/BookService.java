@@ -1,4 +1,4 @@
-package com.example.MyBookShopApp.data;
+package com.example.MyBookShop.data;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -24,7 +24,7 @@ public class BookService {
                                           (ResultSet rs, int rowNum) ->{
             Book book = new Book();
             book.setId(rs.getInt("id"));
-            book.setAuthor(rs.getString("author"));
+            book.setAuthor(rs.getString("first_name") + " " + rs.getString("last_name"));
             book.setTitle(rs.getString("title"));
             book.setPriceOld(rs.getString("priceOld"));
             book.setPrice(rs.getString("price"));
@@ -32,11 +32,4 @@ public class BookService {
         });
         return new ArrayList<>(books);
     }
-
-    public List<String> getAuthors() {
-        List<String> authors = jdbc.query("SELECT * FROM authors", (ResultSet rs, int rowNum) -> (rs.getString("author")));
-        authors = authors.stream().sorted().collect(Collectors.toList());
-        return new ArrayList<>(authors);
-    }
-
 }

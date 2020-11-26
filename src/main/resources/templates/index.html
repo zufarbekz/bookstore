@@ -32,6 +32,12 @@
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <script defer src="/assets/js/scripts.min.js?v=64223515"></script>
 
+    <script>
+      $(document).ready(function() {
+        $('.mdb-select').materialSelect();
+      });
+    </script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
     </script>
     <script type="text/javascript">
@@ -95,15 +101,15 @@
       <div class="wrap">
         <nav class="menuModal" id="navigate">
           <ul class="menu menu_main">
-            <li class="menu-item menu-item_ACTIVE"><a class="menu-link" href="/bookshop/main" th:text="#{topbar.main}"></a>
+            <li class="menu-item menu-item_ACTIVE"><a class="menu-link" href="/" th:text="#{topbar.main}"></a>
             </li>
-            <li class="menu-item"><a class="menu-link" href="/bookshop/genres" th:text="#{topbar.genres}"></a>
+            <li class="menu-item"><a class="menu-link" href="/genres" th:text="#{topbar.genres}"></a>
             </li>
             <li class="menu-item"><a class="menu-link" href="/books/recent.html" th:text="#{topbar.news}"></a>
             </li>
             <li class="menu-item"><a class="menu-link" href="/books/popular.html" th:text="#{topbar.popular}"></a>
             </li>
-            <li class="menu-item"><a class="menu-link" href="/bookshop/authors" th:text="#{topbar.authors}"></a>
+            <li class="menu-item"><a class="menu-link" href="/authors" th:text="#{topbar.authors}"></a>
             </li>
           </ul>
         </nav>
@@ -561,15 +567,15 @@
         </div>
         <div class="row-block">
           <ul class="menu menu_vt Footer-menu">
-            <li class="menu-item"><a class="menu-link" href="/bookshop/main" th:text="#{topbar.main}">Главная</a>
+            <li class="menu-item"><a class="menu-link" href="/" th:text="#{topbar.main}">Главная</a>
             </li>
-            <li class="menu-item"><a class="menu-link" href="/bookshop/genres" th:text="#{topbar.genres}">Жанры</a>
+            <li class="menu-item"><a class="menu-link" href="/genres" th:text="#{topbar.genres}">Жанры</a>
             </li>
             <li class="menu-item"><a class="menu-link" href="/books/recent.html" th:text="#{topbar.news}">Новинки</a>
             </li>
             <li class="menu-item"><a class="menu-link" href="/books/popular.html" th:text="#{topbar.popular}">Популярное</a>
             </li>
-            <li class="menu-item"><a class="menu-link" href="/bookshop/authors" th:text="#{topbar.authors}">Авторы</a>
+            <li class="menu-item"><a class="menu-link" href="/authors" th:text="#{topbar.authors}">Авторы</a>
             </li>
           </ul>
         </div>
@@ -588,11 +594,11 @@
 
             <li class="menu-item">
                 <span th:text="#{menu.select}">Выбор языка</span>
-                <select id="locales">
-                  <option value=""></option>
-                  <option value="en">English</option>
-                  <option value="ru">Русский</option>
-                </select>
+              <select class="mdb-select md-form" id="locales">
+                <option value=""></option>
+                <option value="en">English</option>
+                <option value="ru">Русский</option>
+              </select>
             </li>
 
           </ul>

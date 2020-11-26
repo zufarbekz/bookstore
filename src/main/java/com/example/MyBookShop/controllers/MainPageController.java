@@ -1,14 +1,12 @@
-package com.example.MyBookShopApp.controllers;
+package com.example.MyBookShop.controllers;
 
-import com.example.MyBookShopApp.data.BookService;
+import com.example.MyBookShop.data.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/bookshop")
 public class MainPageController {
 
     private final BookService bookService;
@@ -18,7 +16,7 @@ public class MainPageController {
         this.bookService = bookService;
     }
 
-    @GetMapping(value = "/main")
+    @GetMapping("/")
     public String getMainPage(Model model){
         model.addAttribute("bookData", bookService.getBooks());
         return "index";
@@ -28,11 +26,4 @@ public class MainPageController {
     public String getGenresPage(){
         return "genres/genres";
     }
-
-    @GetMapping("/authors")
-    public String getAuthorsPage(Model model){
-        model.addAttribute("authorsData", bookService.getAuthors());
-        return "authors/authors";
-    }
-
 }
