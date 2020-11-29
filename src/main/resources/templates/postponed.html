@@ -24,11 +24,11 @@
   <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-Light.woff2" as="font" crossorigin="anonymous">
   <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-Medium.woff2" as="font" crossorigin="anonymous">
   <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-ExtraBold.woff2" as="font" crossorigin="anonymous">
-  <link rel="stylesheet" href="/assets/css/fonts.min.css?v=22193648">
-  <link rel="stylesheet" href="/assets/css/basic.min.css?v=22193648">
-  <link rel="stylesheet" href="/assets/css/extra.min.css?v=22193648"><!--[if lt IE 9]>
+  <link rel="stylesheet" href="/assets/css/fonts.min.css?v=04238027">
+  <link rel="stylesheet" href="/assets/css/basic.min.css?v=04238027">
+  <link rel="stylesheet" href="/assets/css/extra.min.css?v=04238027"><!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script defer src="/assets/js/scripts.min.js?v=22193648"></script>
+  <script defer src="/assets/js/scripts.min.js?v=04238027"></script>
 
   <div th:insert="~{fragments/script_fragment :: scripts}"></div>
 </head>
@@ -42,14 +42,14 @@
           | браузера здесь&nbsp;
       | для правильного отображения сайта.
   -->
-  <header th:insert="~{fragments/header_fragment :: headFragment}"></header>
+  <header th:replace="~{fragments/header_fragment :: headFragment}"></header>
 
   <div class="Middle">
     <div class="wrap">
       <main class="Middle-main">
-        <h1 class="Middle-title" th:text="#{topbar.cart}">Корзина
+        <h1 class="Middle-title" th:text="#{topbar.postponed}">Отложенное
         </h1>
-        <form class="form Cart" action="#" method="post">
+        <form class="form Cart Cart_postponed" action="#" method="post">
           <div class="Cart-product">
             <div class="Cart-block Cart-block_row">
               <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="/assets/img/content/main/card.jpg" alt="card.jpg"/></a>
@@ -99,7 +99,7 @@
                   </div>
                   <div class="Cart-buttons">
                     <div class="Cart-btn">
-                      <button class="btn btn_primary btn_outline" data-sendstatus="KEPT" data-bookid="[1122]"><span class="btn-icon"><img src="/assets/img/icons/heart.svg" alt="heart.svg"/></span><span class="btn-content">Отложить</span>
+                      <button class="btn btn_primary btn_outline" data-sendstatus="CART" data-bookid="[1122]"><span class="btn-icon"><img src="/assets/img/icons/shopping-basket.svg" alt="shopping-basket.svg"/></span><span class="btn-content">Купить</span>
                       </button>
                     </div>
                     <div class="Cart-btn">
@@ -166,7 +166,7 @@
                   </div>
                   <div class="Cart-buttons">
                     <div class="Cart-btn">
-                      <button class="btn btn_primary btn_outline" data-sendstatus="KEPT" data-bookid="[1133]"><span class="btn-icon"><img src="/assets/img/icons/heart.svg" alt="heart.svg"/></span><span class="btn-content">Отложить</span>
+                      <button class="btn btn_primary btn_outline" data-sendstatus="CART" data-bookid="[1133]"><span class="btn-icon"><img src="/assets/img/icons/shopping-basket.svg" alt="shopping-basket.svg"/></span><span class="btn-content">Купить</span>
                       </button>
                     </div>
                     <div class="Cart-btn">
@@ -237,7 +237,7 @@
                   </div>
                   <div class="Cart-buttons">
                     <div class="Cart-btn">
-                      <button class="btn btn_primary btn_outline" data-sendstatus="KEPT" data-bookid="[1111]"><span class="btn-icon"><img src="/assets/img/icons/heart.svg" alt="heart.svg"/></span><span class="btn-content">Отложить</span>
+                      <button class="btn btn_primary btn_outline" data-sendstatus="CART" data-bookid="[1111]"><span class="btn-icon"><img src="/assets/img/icons/shopping-basket.svg" alt="shopping-basket.svg"/></span><span class="btn-content">Купить</span>
                       </button>
                     </div>
                     <div class="Cart-btn">
@@ -261,10 +261,10 @@
           </div>
           <div class="Cart-total">
             <div class="Cart-block Cart-block_total">
-              <strong class="Cart-title">Итого:
-              </strong><span class="Cart-price">534 р.</span><span class="Cart-price_old">658 р.</span>
             </div>
-            <div class="Cart-block"><a class="btn btn_success btn_md" href="/order.html">Купить</a>
+            <div class="Cart-block">
+              <button class="btn btn_success btn_md Cart-buyAll" data-sendstatus="CART" data-bookid="[1111, 1122, 1133]">Купить все
+              </button>
             </div>
           </div>
         </form>
@@ -272,7 +272,7 @@
     </div>
   </div>
 
-  <footer th:insert="~{fragments/footer_fragment :: footerFragment}"></footer>
+  <footer th:replace="~{fragments/footer_fragment :: footerFragment}"></footer>
   <script src="/assets/plg/jQuery/jquery-3.5.1.min.js"></script>
   <!--+menu(-->
   <!--    'Это раз',-->

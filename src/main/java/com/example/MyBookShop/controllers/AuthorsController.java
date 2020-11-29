@@ -30,4 +30,14 @@ public class AuthorsController {
     public String getAuthorsPage(){
          return "authors/authors";
     }
+
+    @GetMapping("/authors/slug")
+    public String getSlugPage(){
+        return "authors/slug";
+    }
+
+    @GetMapping("/books/author")
+    public String getBooksAuthorPage(){
+        return "books/author";
+    }
 }

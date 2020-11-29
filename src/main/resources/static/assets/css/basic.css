@@ -1507,25 +1507,34 @@ label.toggle {
   position: absolute;
   left: -100000px;
   opacity: 0;
+  transition: opacity 0.3s ease, left 0s 0.3s, -webkit-transform 0.3s ease;
   transition: opacity 0.3s ease, transform 0.3s ease, left 0s 0.3s;
+  transition: opacity 0.3s ease, transform 0.3s ease, left 0s 0.3s, -webkit-transform 0.3s ease;
   z-index: 100;
 }
 .datepicker.-from-top- {
+  -webkit-transform: translateY(-8px);
   transform: translateY(-8px);
 }
 .datepicker.-from-right- {
+  -webkit-transform: translateX(8px);
   transform: translateX(8px);
 }
 .datepicker.-from-bottom- {
+  -webkit-transform: translateY(8px);
   transform: translateY(8px);
 }
 .datepicker.-from-left- {
+  -webkit-transform: translateX(-8px);
   transform: translateX(-8px);
 }
 .datepicker.active {
   opacity: 1;
+  -webkit-transform: translate(0);
   transform: translate(0);
+  transition: opacity 0.3s ease, left 0s 0s, -webkit-transform 0.3s ease;
   transition: opacity 0.3s ease, transform 0.3s ease, left 0s 0s;
+  transition: opacity 0.3s ease, transform 0.3s ease, left 0s 0s, -webkit-transform 0.3s ease;
 }
 .datepicker-inline .datepicker {
   border-color: #d7d7d7;
@@ -1534,6 +1543,7 @@ label.toggle {
   left: auto;
   right: auto;
   opacity: 1;
+  -webkit-transform: none;
   transform: none;
 }
 .datepicker--content {
@@ -1557,24 +1567,28 @@ label.toggle {
 .-top-left- .datepicker--pointer,
 .-top-right- .datepicker--pointer {
   top: calc(100% - 4px);
+  -webkit-transform: rotate(135deg);
   transform: rotate(135deg);
 }
 .-right-bottom- .datepicker--pointer,
 .-right-center- .datepicker--pointer,
 .-right-top- .datepicker--pointer {
   right: calc(100% - 4px);
+  -webkit-transform: rotate(225deg);
   transform: rotate(225deg);
 }
 .-bottom-center- .datepicker--pointer,
 .-bottom-left- .datepicker--pointer,
 .-bottom-right- .datepicker--pointer {
   bottom: calc(100% - 4px);
+  -webkit-transform: rotate(315deg);
   transform: rotate(315deg);
 }
 .-left-bottom- .datepicker--pointer,
 .-left-center- .datepicker--pointer,
 .-left-top- .datepicker--pointer {
   left: calc(100% - 4px);
+  -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 .-bottom-left- .datepicker--pointer,
@@ -1797,7 +1811,6 @@ label.toggle {
   border: 1px solid #dedede;
   background: #fff;
   cursor: pointer;
-  -webkit-transition: background 0.2s;
   transition: background 0.2s;
   margin-top: -6px;
 }
@@ -1809,7 +1822,6 @@ label.toggle {
   border: 1px solid #dedede;
   background: #fff;
   cursor: pointer;
-  -moz-transition: background 0.2s;
   transition: background 0.2s;
 }
 .datepicker--time-row input[type=range]::-ms-thumb {
@@ -1820,7 +1832,6 @@ label.toggle {
   border: 1px solid #dedede;
   background: #fff;
   cursor: pointer;
-  -ms-transition: background 0.2s;
   transition: background 0.2s;
 }
 .datepicker--time-row input[type=range]::-webkit-slider-runnable-track {
@@ -1874,6 +1885,7 @@ label.toggle {
   width: 1px;
   left: calc(50% - 1px);
   top: calc(50% + 1px);
+  -webkit-transform: translateY(-100%);
   transform: translateY(-100%);
 }
 .datepicker--time-icon:before {
@@ -1939,6 +1951,55 @@ label.toggle {
   color: #fff;
   opacity: 0.4;
   font-weight: 300;
+}
+
+/*-----------  media  -----------*/
+.media {
+  display: flex;
+}
+.media_middle {
+  align-items: center;
+}
+.media-header {
+  display: block;
+  margin-bottom: 10px;
+}
+.media-title {
+  font-weight: bold;
+  font-size: 17px;
+  display: block;
+}
+.media-image {
+  display: block;
+  line-height: 0;
+}
+.media-content {
+  padding-left: 12px;
+  padding-right: 12px;
+  display: block;
+  flex-grow: 8;
+  flex-basis: 60px;
+  flex-shrink: 0;
+}
+.media-content:first-child {
+  padding-left: 0;
+}
+.media-content:last-child {
+  padding-right: 0;
+}
+.media_vt {
+  display: block;
+  text-align: center;
+}
+.media_vt .media-image {
+  margin-bottom: 10px;
+}
+.media_vt .media-content {
+  padding-left: 0;
+}
+.media_vt .media-header {
+  border-right: none;
+  padding-right: 0;
 }
 
 /*----------  Меню  ----------*/
@@ -2007,12 +2068,14 @@ label.toggle {
   position: absolute;
   top: 45%;
   margin-top: 0px;
-  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
   box-shadow: none;
   transition: all 0.3s;
 }
 .menuTrigger_OPEN span + span {
-  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
   margin-top: 0;
 }
 .menuTrigger_OPEN span:last-child {
@@ -2144,12 +2207,14 @@ label.toggle {
   display: block;
 }
 .menu_img .menu-item a img {
-  transform: scale(0.82);
+  -webkit-transform: scale(0.82);
+          transform: scale(0.82);
   transition: all 100ms;
 }
 @media screen and (min-width: 990px) {
   .menu_img .menu-item a:hover img {
-    transform: none;
+    -webkit-transform: none;
+            transform: none;
     transition: all 100ms;
   }
 }
@@ -2183,11 +2248,13 @@ label.toggle {
   justify-content: center;
 }
 .menu_smallImg .menu-item a img {
-  transform: scale(1);
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 @media screen and (min-width: 990px) {
   .menu_smallImg .menu-item a:hover img {
-    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
   }
 }
 .menu_main {
@@ -2334,6 +2401,159 @@ label.toggle {
   padding: 0 8px 0px;
   letter-spacing: -0.5px;
   line-height: 35px;
+}
+
+.trigger {
+  visibility: visible;
+  position: relative;
+  display: inline-block;
+}
+.trigger:focus {
+  outline: none;
+}
+button.trigger {
+  border: none;
+  background: none;
+  padding: 0;
+}
+.trigger_dropdown {
+  position: relative;
+}
+@media screen and (max-width: 990px) {
+  .Site_modalOPEN {
+    overflow: hidden;
+  }
+}
+.modal {
+  justify-content: center;
+  align-items: center;
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1010;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  overflow: auto;
+}
+@media screen and (max-width: 990px) {
+  .modal {
+    overflow: scroll;
+    align-items: start;
+  }
+}
+.modal_OPEN {
+  display: flex;
+}
+.modal-window {
+  box-shadow: 0 0 5px 1px rgba(0,0,0,0.32);
+  border-radius: 10px;
+  padding: 35px 60px;
+  background-color: #fff;
+  width: 600px;
+  position: relative;
+  max-width: 95%;
+}
+@media screen and (max-width: 480px) {
+  .modal-window {
+    padding: 35px;
+  }
+}
+.modal_dropdown {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  padding-top: 30px;
+  top: 0;
+  right: auto;
+  bottom: auto;
+  padding-left: 10px;
+}
+.modal_dropdown.modal_OPEN {
+  display: block;
+}
+.modal_full {
+  align-items: flex-start;
+  padding: 0;
+  justify-content: center;
+}
+.modal_full .modal-window {
+  width: 100%;
+  height: 100%;
+  padding: 50px;
+  box-shadow: none;
+  border-radius: 0;
+  max-width: none;
+}
+.modal_center .modal-window {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal_compression .modal-window {
+  width: auto;
+}
+.modal-title {
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  letter-spacing: -0.8px;
+  line-height: 1.2em;
+  margin-bottom: 20px;
+}
+@media screen and (max-width: 480px) {
+  .modal-title {
+    font-size: 16px;
+  }
+}
+.modal-mark {
+  color: #6db33f;
+  text-decoration: underline;
+}
+.modal-dark {
+  color: #02071d;
+  font-size: 34px;
+}
+@media screen and (max-width: 480px) {
+  .modal-dark {
+    font-size: 28px;
+  }
+}
+.modal-close {
+  position: absolute;
+  right: 13px;
+  top: 13px;
+  display: block;
+  width: 23px;
+  height: 19px;
+}
+.modal-close span {
+  display: block;
+  height: 3px;
+  width: 20px;
+  border-radius: 100px;
+  background: #6db33f;
+  opacity: 1;
+  position: absolute;
+  top: 45%;
+  margin-top: 0px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  box-shadow: none;
+  transition: all 0.3s;
+  pointer-events: none;
+}
+.modal-close span + span {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  margin-top: 0;
+}
+.modal-close:hover {
+  position: absolute;
+  border-bottom-color: transparent;
 }
 
 /*-----------  Обертка картинки  -----------*/
