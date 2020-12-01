@@ -45,15 +45,20 @@
         <div class="wrap">
             <nav class="menuModal" id="navigate">
                 <ul class="menu menu_main">
-                    <li class="menu-item menu-item_ACTIVE"><a class="menu-link" href="/" th:text="#{topbar.main}"></a>
+                    <li class="menu-item " th:classappend="${#httpServletRequest.requestURI.endsWith('/')} ? 'menu-item_ACTIVE'">
+                        <a class="menu-link" href="/" th:text="#{topbar.main}"></a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/genres" th:text="#{topbar.genres}"></a>
+                    <li class="menu-item" th:classappend="${#httpServletRequest.requestURI.contains('genres')} ? 'menu-item_ACTIVE'">
+                        <a class="menu-link" href="/genres" th:text="#{topbar.genres}"></a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/recent" th:text="#{topbar.news}"></a>
+                    <li class="menu-item" th:classappend="${#httpServletRequest.requestURI.contains('recent')} ? 'menu-item_ACTIVE'">
+                        <a class="menu-link" href="/recent" th:text="#{topbar.news}"></a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/popular" th:text="#{topbar.popular}"></a>
+                    <li class="menu-item" th:classappend="${#httpServletRequest.requestURI.contains('popular')} ? 'menu-item_ACTIVE'">
+                        <a class="menu-link" href="/popular" th:text="#{topbar.popular}"></a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/authors" th:text="#{topbar.authors}"></a>
+                    <li class="menu-item" th:classappend="${#httpServletRequest.requestURI.contains('authors')} ? 'menu-item_ACTIVE'">
+                        <a class="menu-link" href="/authors" th:text="#{topbar.authors}"></a>
                     </li>
                 </ul>
             </nav>

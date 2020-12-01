@@ -46,13 +46,17 @@
                     </li>
                     <li class="menu-item"><a class="menu-link" th:href="@{/contacts}" th:text="#{contacts}">Контакты</a>
                     </li>
-
                     <li class="menu-item">
-                        <span th:text="#{menu.select}">Выбор языка</span>
-                        <select class="mdb-select md-form" id="locales">
-                            <option value=""></option>
-                            <option value="en">English</option>
-                            <option value="ru">Русский</option>
+                        <span th:text="#{lang.change}"></span>:
+                        <select id="locales">
+                            <option value="en"
+                                    th:selected="${#httpServletRequest.getParameter('lang') == 'en'} ? 'selected' : null"
+                                    th:text="#{lang.eng}">
+                            </option>
+                            <option value="ru"
+                                    th:text="#{lang.ru}"
+                                    th:selected="${#httpServletRequest.getParameter('lang') == 'ru'} ? 'selected' : null">
+                            </option>
                         </select>
                     </li>
 
