@@ -20,16 +20,28 @@ public class BookService {
     }
 
     public List<Book> getBooks() {
-        List<Book> books = jdbc.query("SELECT * FROM books, authors WHERE books.id = authors.id",
+        List<Book> books = jdbc.query("SELECT * FROM books",
                                           (ResultSet rs, int rowNum) ->{
             Book book = new Book();
             book.setId(rs.getInt("id"));
-            book.setAuthor(rs.getString("first_name") + " " + rs.getString("last_name"));
+            book.setAuthor(getAuthorByAuthorId(rs.getInt("author_id")));
             book.setTitle(rs.getString("title"));
-            book.setPriceOld(rs.getString("priceOld"));
+            book.setPriceOld(rs.getString("price_old"));
             book.setPrice(rs.getString("price"));
             return book;
         });
         return new ArrayList<>(books);
+    }
+
+    private String getAuthorByAuthorId(int author_id){
+        List<Author> authors = jdbc.query("SELECT * FROM authors WHERE authors.id=" + author_id,
+                (ResultSet rs, int rowNum)->{
+                    Author author = new Author();
+                    author.setId(rs.getInt("id"));
+                    author.setFirstName(rs.getString("first_name"));
+                    author.setLastName(rs.getString("last_name"));
+                    return author;
+        });
+        return authors.get(0).toString();
     }
 }
