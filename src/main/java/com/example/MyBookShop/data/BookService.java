@@ -7,11 +7,25 @@ import org.springframework.stereotype.Service;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Service
 public class BookService {
 
+    private BookRepository bookRepository;
+
+    @Autowired
+    public BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+
+    public List<Book> getBooks(){
+        return bookRepository.findAll();
+    }
+
+    //using JDBC
+    /*
     private JdbcTemplate jdbc;
 
     @Autowired
@@ -44,4 +58,5 @@ public class BookService {
         });
         return authors.get(0).toString();
     }
+    */
 }
