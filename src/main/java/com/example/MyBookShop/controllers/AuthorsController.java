@@ -1,8 +1,8 @@
 package com.example.MyBookShop.controllers;
 
 
-import com.example.MyBookShop.data.Author;
-import com.example.MyBookShop.data.AuthorService;
+import com.example.MyBookShop.model.Author;
+import com.example.MyBookShop.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
