@@ -1,39 +1,58 @@
 package com.example.MyBookShop.model;
 
-import org.hibernate.annotations.Type;
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "books")
+@ApiModel("entity of the table books")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty("Auto generated ID for book")
     private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id")
+    @JsonIgnore
     private Author author;
 
     @ManyToOne
     @JoinColumn(name = "genre_id", referencedColumnName = "id")
+    @JsonIgnore
     private Genre genre;
 
+    @ApiModelProperty("Title of the book")
     private String title;
+
+    @ApiModelProperty("mnemonical identity sequence of characters")
     private String slug;
-    @Column(length = 100000)
+
+    @Column(columnDefinition = "TEXT")
+    @ApiModelProperty("Description of the book")
     private String description;
+
+    @ApiModelProperty("Old price")
     private String priceOld;
+
+    @ApiModelProperty("New price")
     private String price;
+
+    @ApiModelProperty("Image url")
     private String image;
+
     @Column(name = "is_bestseller")
+    @ApiModelProperty("Book is considered to be bestseller if is_bestseller = true")
     private boolean isBestseller;
 
     @Column(name = "pub_date")
+    @ApiModelProperty("Publication Date of the book")
     private String pubDate;
 
+    @ApiModelProperty("Discount of the book. Type Integer [0-100]")
     private Integer discount;
 
     public Genre getGenre() {
