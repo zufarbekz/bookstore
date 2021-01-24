@@ -1,7 +1,8 @@
 package com.example.MyBookShop.controllers;
 
 import com.example.MyBookShop.model.Book;
-import com.example.MyBookShop.model.RecommendedBooksPageDto;
+import com.example.MyBookShop.model.BooksPageDto;
+import com.example.MyBookShop.model.SearchWordDto;
 import com.example.MyBookShop.service.BookService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +10,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.awt.print.Pageable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -27,21 +26,30 @@ public class MainPageController {
         this.bookService = bookService;
     }
 
+
+
     @ModelAttribute("recommendedBooks")
     public List<Book> recommendedBooks(){
         return bookService.getPageOfRecommended(0,6).getContent();
     }
+
+    @ModelAttribute("searchWordDto")
+    public SearchWordDto getSearchWordDto(){
+        return new SearchWordDto();
+    }
+
+    @ModelAttribute("getSearchResults")
+    public List<Book> getSearchResults(){
+        return new ArrayList<>();
+    }
+
+
 
     @GetMapping("/")
     public String getMainPage(){
         return "index";
     }
 
-    @GetMapping("/books/recommended")
-    @ResponseBody
-    public RecommendedBooksPageDto getRecommendedBooks(@RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit){
-        return new RecommendedBooksPageDto(bookService.getPageOfRecommended(offset, limit).getContent());
-    }
 
     @GetMapping("/popular")
     public String getPopularPage(){
@@ -98,8 +106,27 @@ public class MainPageController {
         return "tags/index";
     }
 
-    @GetMapping("/search")
-    public String getSearchPage(){
-        return "search/index";
+
+    @GetMapping("/books/recommended")
+    @ResponseBody
+    public BooksPageDto getRecommendedBooks(@RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit){
+        return new BooksPageDto(bookService.getPageOfRecommended(offset, limit).getContent());
+    }
+
+    @GetMapping("/search/page/{searchWord}")
+    @ResponseBody
+    public BooksPageDto getNextSearchPage(@PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto,
+                                          @RequestParam("offset") Integer offset,
+                                          @RequestParam("limit") Integer limit){
+
+        return new BooksPageDto(bookService.getPageOfBookSearch(searchWordDto.getExample(),offset,limit).getContent());
+    }
+
+    @GetMapping(value = {"/search", "/search/{searchWord}"})
+    public String getSearchPage(@PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto,
+                                Model model){
+        model.addAttribute("searchWordDto", searchWordDto);
+        model.addAttribute("getSearchResults", bookService.getPageOfBookSearch(searchWordDto.getExample(), 0,5).getContent());
+        return "/search/index";
     }
 }

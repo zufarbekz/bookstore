@@ -49,4 +49,9 @@ public class BookService {
         return bookRepository.getBooksWithMaxDiscount();
     }
 
+    public Page<Book> getPageOfBookSearch(String searchWord, Integer offset, Integer limit){
+        Pageable nextPage = PageRequest.of(offset,limit);
+        return bookRepository.findBookByTitleContaining(searchWord, nextPage);
+    }
+
 }
