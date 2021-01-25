@@ -20,10 +20,7 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public Page<Book> getPageOfRecommended(Integer offset, Integer limit){
-        Pageable nextPage = PageRequest.of(offset,limit);
-        return bookRepository.findAll(nextPage);
-    }
+    // Spring REST Controller Methods
 
     public List<Book> getBooksByAuthorName(String authorName){
         return bookRepository.findBookByAuthorFirstNameContaining(authorName);
@@ -48,6 +45,25 @@ public class BookService {
     public List<Book> getBooksByMaxDiscount(){
         return bookRepository.getBooksWithMaxDiscount();
     }
+
+    // Spring Pagination Methods
+
+    public Page<Book> getPageOfRecommended(Integer offset, Integer limit){
+        Pageable nextPage = PageRequest.of(offset,limit);
+        return bookRepository.findAll(nextPage);
+    }
+
+    public Page<Book> getPageOfRecent(Integer offset, Integer limit){
+        Pageable next = PageRequest.of(offset,limit);
+        return bookRepository.findAll(next);
+    }
+
+    public Page<Book> getPageOfPopular(Integer offset, Integer limit){
+        Pageable next = PageRequest.of(offset,limit);
+        return bookRepository.findAll(next);
+    }
+
+    //Spring Paginated Search Method
 
     public Page<Book> getPageOfBookSearch(String searchWord, Integer offset, Integer limit){
         Pageable nextPage = PageRequest.of(offset,limit);

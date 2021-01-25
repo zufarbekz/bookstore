@@ -2,9 +2,7 @@ package com.example.MyBookShop.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.*;
-
 import javax.persistence.*;
-import java.sql.Date;
 
 @Entity
 @Table(name = "books")
