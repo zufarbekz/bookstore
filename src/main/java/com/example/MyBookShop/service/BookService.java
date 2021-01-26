@@ -8,6 +8,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.net.URLConnection;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -70,4 +74,19 @@ public class BookService {
         return bookRepository.findBookByTitleContaining(searchWord, nextPage);
     }
 
+    //Method for Filtering Recent Books By Publication Date
+
+    public Page<Book> getPageOfFilteredBooks(Integer offset, Integer limit, String fromStr, String toStr) {
+        Pageable next = PageRequest.of(offset,limit);
+        SimpleDateFormat format = new SimpleDateFormat("dd.mm.yyyy");
+        Date from = new Date();
+        Date to = new Date();
+        try {
+            from = format.parse(fromStr);
+            to = format.parse(toStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return bookRepository.findBookByPubDateBetween(from, to, next);
+    }
 }

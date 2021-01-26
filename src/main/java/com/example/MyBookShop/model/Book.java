@@ -2,7 +2,9 @@ package com.example.MyBookShop.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.*;
+
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "books")
@@ -47,8 +49,9 @@ public class Book {
     private boolean isBestseller;
 
     @Column(name = "pub_date")
+    @Temporal(TemporalType.DATE)
     @ApiModelProperty("Publication Date of the book")
-    private String pubDate;
+    private Date pubDate;
 
     @ApiModelProperty("Discount of the book. Type Integer [0-100]")
     private Integer discount;
@@ -93,11 +96,11 @@ public class Book {
         isBestseller = bestseller;
     }
 
-    public String getPubDate() {
+    public Date getPubDate() {
         return pubDate;
     }
 
-    public void setPubDate(String pubDate) {
+    public void setPubDate(Date pubDate) {
         this.pubDate = pubDate;
     }
 
